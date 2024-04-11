@@ -19,11 +19,12 @@ class TempClass:
     a = 10
 
 def hello(request):
-    template = loader.get_template('app/hello.html')
+    # template = loader.get_template('app/hello.html')
     list = ["a value", "second value"]
     temp_class = TempClass()
-    context = {"user" : "Pujan", "list" : list, "temp_class" : temp_class}
-    return HttpResponse(template.render(context, request))
+    context = {"user" : "Pujan", "list" : list, "temp_class" : temp_class, "age" : "21"}
+    # return HttpResponse(template.render(context, request))
+    return render(request, "app/hello.html", context)
 
 def home(request):
     job_list = "<ul>"
