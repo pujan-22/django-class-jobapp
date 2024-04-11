@@ -3,6 +3,8 @@ from os import execv
 from django.shortcuts import redirect, render
 from django.http import HttpResponse, HttpResponseNotFound
 from django.urls import reverse
+from django.template import loader
+
 # Create your views here.
 job_title = [
     '',
@@ -12,6 +14,16 @@ job_title = [
 job_desc = [
     '','Description 1', 'Description 2', 'Description 3'
 ]
+
+class TempClass:
+    a = 10
+
+def hello(request):
+    template = loader.get_template('app/hello.html')
+    list = ["a value", "second value"]
+    temp_class = TempClass()
+    context = {"user" : "Pujan", "list" : list, "temp_class" : temp_class}
+    return HttpResponse(template.render(context, request))
 
 def home(request):
     job_list = "<ul>"
