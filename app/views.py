@@ -27,20 +27,25 @@ def hello(request):
     # return HttpResponse(template.render(context, request))
     return render(request, "app/hello.html", context)
 
-def home(request):
-    job_list = "<ul>"
-    for i in job_title:
-        job_id = job_title.index(i)
-        detail_url = reverse('job_detail', args=(job_id, ))
-        job_list += f"<li><a href='{detail_url}'>{i}</a></li>"
-    job_list += "</ul>"
-    return HttpResponse(f"<h1>Hello World!!!</h1> {job_list}")
+def job_list(request):
+    # job_list = "<ul>"
+    # for i in job_title:
+    #     job_id = job_title.index(i)
+    #     detail_url = reverse('job_detail', args=(job_id, ))
+    #     job_list += f"<li><a href='{detail_url}'>{i}</a></li>"
+    # job_list += "</ul>"
+    # return HttpResponse(f"<h1>Hello World!!!</h1> {job_list}")
+
+    context = {"job_list" : job_title}
+    return render(request, "app/job_list.html", context)
 
 def job_detail(request, id):
     try:
+        context = {"job_title" : job_title[id], "job_desc" : job_desc[id]}
         if id == 0:
-            return redirect(reverse("job_home"))
-        site = f"<h1>{job_title[id]}</h1> {job_desc[id]}"
-        return HttpResponse(site)
+            return redirect(reverse("job_list"))
+        # site = f"<h1>{job_title[id]}</h1> {job_desc[id]}"
+        # return HttpResponse(site)
+        return render(request, "app/job_detail.html", context)
     except:
         return HttpResponseNotFound("Not Found")
