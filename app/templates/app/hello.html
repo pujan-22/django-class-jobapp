@@ -6,8 +6,15 @@
     <title>Hello</title>
 </head>
 <body>
-    <H1>Hello {{user}}</H1>
+    {% if is_loggedin %}
+        <H1>Hello {{user}}</H1>
+    {% else %}
+        <h1>Hello user</h1>
+    {% endif %}
     <h2>Age: {{age}}</h2>
     <h2>{{list.0}}, {{temp_class.a}}</h2>
+    {% for x in list %}
+        <p>{{x}}</p>
+    {% endfor %}
 </body>
 </html>

@@ -21,8 +21,9 @@ class TempClass:
 def hello(request):
     # template = loader.get_template('app/hello.html')
     list = ["a value", "second value"]
+    is_loggedin = True
     temp_class = TempClass()
-    context = {"user" : "Pujan", "list" : list, "temp_class" : temp_class, "age" : "21"}
+    context = {"user" : "Pujan", "list" : list, "temp_class" : temp_class, "age" : "21", "is_loggedin" : is_loggedin}
     # return HttpResponse(template.render(context, request))
     return render(request, "app/hello.html", context)
 
