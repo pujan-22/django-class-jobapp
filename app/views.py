@@ -25,17 +25,9 @@ def hello(request):
     is_loggedin = True
     temp_class = TempClass()
     context = {"user" : "Pujan", "list" : list, "temp_class" : temp_class, "age" : "21", "is_loggedin" : is_loggedin}
-    # return HttpResponse(template.render(context, request))
     return render(request, "app/hello.html", context)
 
 def job_list(request):
-    # job_list = "<ul>"
-    # for i in job_title:
-    #     job_id = job_title.index(i)
-    #     detail_url = reverse('job_detail', args=(job_id, ))
-    #     job_list += f"<li><a href='{detail_url}'>{i}</a></li>"
-    # job_list += "</ul>"
-    # return HttpResponse(f"<h1>Hello World!!!</h1> {job_list}")
     jobs = JobPost.objects.all()
     context = {"jobs" : jobs}
     return render(request, "app/index.html", context)
@@ -45,8 +37,6 @@ def job_detail(request, id):
         
         if id == 0:
             return redirect(reverse("job_list"))
-        # site = f"<h1>{job_title[id]}</h1> {job_desc[id]}"
-        # return HttpResponse(site)
         job = JobPost.objects.get(id=id)
         context = {"job" : job}
         return render(request, "app/job_detail.html", context)
