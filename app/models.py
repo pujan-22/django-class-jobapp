@@ -2,6 +2,11 @@ from django.db import models
 from django.utils.text import slugify
 
 # Create your models here.
+
+class Author(models.Model):
+    name =  models.CharField(max_length=200)
+    company =  models.CharField(max_length=200)
+    designation =  models.CharField(max_length=200)
     
 class Location(models.Model):
     street = models.CharField(max_length=200)
@@ -19,6 +24,7 @@ class JobPost(models.Model):
     salary = models.IntegerField()
     slug = models.SlugField(null=True, max_length=50, unique=True)
     location = models.OneToOneField(Location, on_delete=models.CASCADE, null=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True)
 
     def save(self, *args, **kwargs):
         if not self.id:
