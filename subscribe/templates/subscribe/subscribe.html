@@ -9,6 +9,11 @@
 <body>
       <form method="post">
         {% csrf_token %}
+        
+        {% if err_email %}
+            <p>{{ err_email }}</p>
+        {% endif %}
+
         <label for="f_name">First Name</label>
         <input type="text" id="f_name" name="firstname" placeholder="First Name" required><br>
     
