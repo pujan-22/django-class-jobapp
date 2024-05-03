@@ -5,7 +5,7 @@ from subscribe.models import Subscribe
 
 # Create your views here.
 def subscribe(request):
-    subscribe_form = SubscribeForm(request.POST)
+    subscribe_form = SubscribeForm(request.POST or None)
     
     err_email = ""
     if request.POST:
