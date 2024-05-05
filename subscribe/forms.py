@@ -1,11 +1,26 @@
 from django import forms
 
 from subscribe.models import Subscribe
+from django.utils.translation import gettext_lazy as _
 
 class SubscribeForm(forms.ModelForm):
     class Meta:
         model=Subscribe
         fields='__all__'
+        # exclude=('first_name',)
+
+        labels={
+            'first_name':_('Enter first name'),
+        }
+        help_texts={
+            'first_name':_('Enter characters only')
+        }
+        error_messages={
+            'first_name':{
+                'required':_('Enter first name')
+            }
+        }
+        
 
 # def validate_comma(value):
 #     if ',' in value:
