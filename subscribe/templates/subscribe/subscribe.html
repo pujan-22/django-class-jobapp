@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,57 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subscribe Form</title>
+    <link rel="stylesheet" href="{% static "subscribe/style.css" %}">
 </head>
 <body>
-      <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <!--
-        {% for field in form %}
-          <div class="subscribe_field">
-            {{field.error}}
-            {{field.label_tag}}
-            {% comment %} <label for="{{field.id_for_label}}">{{field.label}}: </label> for custmization {% endcomment %}
-            {{field}}
-          </div>
-        {% endfor %}-->
-
-        {% comment %} <div class="subscribe_field">
-          {{form.first_name.errors}}
-          <label for="{{form.first_name.id_for_label}}">{{form.first_name.label}}</label>
-          {{form.first_name}}
-        </div>
-        <div class="subscribe_field">
-            {{form.last_name.errors}}
-            <label for="{{form.last_name.id_for_label}}">{{form.last_name.label}}</label>
-            {{form.last_name}}
-        </div>
-        <div class="subscribe_field">
-            {{form.email.errors}}
-            <label for="{{form.email.id_for_label}}">{{form.email.label}}</label>
-            {{form.email}}
-        </div> {% endcomment %}
-        
-        <input type="submit" value="submit">
-        
-        {% comment %} {% csrf_token %}
-        
-        {% if err_email %}
-            <p>{{ err_email }}</p>
-        {% endif %}
-
-        <label for="f_name">First Name</label>
-        <input type="text" id="f_name" name="firstname" placeholder="First Name" required><br>
-    
-        <label for="l_name">Last Name</label>
-        <input type="text" id="l_name" name="lastname" placeholder="Last Name" required><br>
-    
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Email" required><br>
-    
-        <input type="submit" value="Submit"> {% endcomment %}
-    
-      </form>
-    
+  <h1>Subscribe From</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}     
+    <input type="submit" value="submit">  
+  </form>
+  <button onClick="popUp()">Click</button>
+  <script src="{% static "subscribe/script.js" %}"></script>
 </body>
 </html>
