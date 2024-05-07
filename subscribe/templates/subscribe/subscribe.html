@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{% static "subscribe/style.css" %}">
 </head>
 <body>
-  <h1>Subscribe From</h1>
+  <h1><img src="{% static "subscribe/mail.webp" alt="Subscribe"%}" height="20px">Subscribe From</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}     
