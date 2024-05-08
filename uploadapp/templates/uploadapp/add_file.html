@@ -13,8 +13,7 @@
   </form>
 
   {% if saved %}
-    <h3>Image Path: {{ saved.image.url }}</h3>
+    <h3>Image Path: {{ saved.file.url }}</h3>
     <h3>Image Description: {{ saved.description }}</h3>
-    <img src="{{ saved.image.url }}" alt="Image">
   {% endif %}
 </html>
