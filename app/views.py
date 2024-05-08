@@ -1,9 +1,6 @@
-import http
-from os import execv
 from django.shortcuts import redirect, render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponseNotFound
 from django.urls import reverse
-from django.template import loader
 from app.models import JobPost
 
 # Create your views here.
@@ -33,12 +30,11 @@ def job_list(request):
     return render(request, "app/index.html", context)
 
 def job_detail(request, id):
-    try:
-        
+    try:        
         if id == 0:
             return redirect(reverse("job_list"))
         job = JobPost.objects.get(id=id)
-        context = {"job" : job}
+        context = {"job":job}
         return render(request, "app/job_detail.html", context)
-    except:
+    except JobPost.DoesNotExist:
         return HttpResponseNotFound("Not Found")
