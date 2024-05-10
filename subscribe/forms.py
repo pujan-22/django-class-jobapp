@@ -4,6 +4,7 @@ from subscribe.models import Subscribe
 from django.utils.translation import gettext_lazy as _
 
 class SubscribeForm(forms.ModelForm):
+    use_required_attribute = False
     class Meta:
         model=Subscribe
         fields='__all__'
@@ -11,9 +12,8 @@ class SubscribeForm(forms.ModelForm):
 
         labels={
             'first_name':_('Enter first name'),
-        }
-        help_texts={
-            'first_name':_('Enter characters only')
+            'last_name':_('Enter last name'),
+            'email':_('Enter Email')
         }
         error_messages={
             'first_name':{
